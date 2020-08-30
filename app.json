@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "deft-pdf-ui",
-    "slug": "deft-pdf-ui",
+    "name": "call-app",
+    "slug": "call-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
