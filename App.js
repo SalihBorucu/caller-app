@@ -6,6 +6,7 @@ import Login from './src/Authentication/Login.js';
 import Home from './src/Home/Home.js';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as LocalAuthentication from 'expo-local-authentication';
+import PushNotification from './src/components/PushNotification.js';
 
 const fonts = {};
 
@@ -16,8 +17,14 @@ const options = {
     fallbackLabel: 'what',
     disableDeviceFallback: true,
 };
+
 const AuthenticationNavigator = () => {
     function fingerPrintLogin() {
+        //check if there is an enrolled auth option
+        LocalAuthentication.isEnrolledAsync().then((res) => {
+            console.log(res);
+        });
+
         LocalAuthentication.supportedAuthenticationTypesAsync().then((authType) => {
             if (!authType.length) {
                 console.log('No faceID or fingerPrintID');
@@ -44,13 +51,17 @@ const AuthenticationNavigator = () => {
             }
         });
     }
+    LocalAuthentication.supportedAuthenticationTypesAsync().then((authType) => {
+        console.log(authType)
+    })
     fingerPrintLogin();
 
     return (
-        <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={Home}></Stack.Screen>
+        <Stack.Navigator>
+            {/* <Stack.Screen name="Home" component={Home} /> */}
             <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="LoadingScreen" component={LoadingScreen} />
+            {/* <Stack.Screen name="LoadingScreen" component={LoadingScreen} />
+            <Stack.Screen name="PushNotification" component={PushNotification} /> */}
         </Stack.Navigator>
     );
 };

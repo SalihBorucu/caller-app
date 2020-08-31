@@ -46,7 +46,11 @@ const LoadAssets = ({ assets, fonts, children }) => {
         return <AppLoading />;
     }
     
-    return <NavigationContainer {...{ onStateChange, initialState }}>{children}</NavigationContainer>;
+    return (
+        <NavigationContainer {...{ onStateChange, initialState }}>
+            {children}
+        </NavigationContainer>
+    );
 };
 
 export default LoadAssets;
