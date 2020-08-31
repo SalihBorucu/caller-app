@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, Button } from 'react-native';
 import Header from './Header';
 import FormInput from '../components/FormInput';
 import RoundButton from '../components/RoundButton';
 
-export default function Login() {
+export default function Login({confirmLogin, navigation}) {
+    console.log(navigation)
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>
@@ -16,7 +17,8 @@ export default function Login() {
                 <Text style={styles.forgotPwd}>Forgot Password</Text>
             </View>
             <View style={styles.footer}>
-                <RoundButton text="Sign In"></RoundButton>
+                <RoundButton text="Sign In" confirmLogin={confirmLogin}></RoundButton>
+                <RoundButton text="Google Sign In" navigation={navigation}></RoundButton>
             </View>
         </ScrollView>
     );

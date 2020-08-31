@@ -45,6 +45,7 @@ const LoadAssets = ({ assets, fonts, children }) => {
     if (!ready || !isNavigationReady) {
         return <AppLoading />;
     }
+    
     return <NavigationContainer {...{ onStateChange, initialState }}>{children}</NavigationContainer>;
 };
 

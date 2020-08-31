@@ -11,7 +11,7 @@ export default function Header({ title }) {
 
 const styles = StyleSheet.create({
     title: {
-        fontFamily: 'Poppins-SemiBold',
+        // fontFamily: 'Poppins-SemiBold',
         fontSize: 32,
         textAlign: 'center',
         margin: 40,
