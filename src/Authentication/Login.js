@@ -9,7 +9,7 @@ export default function Login({confirmLogin, navigation}) {
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>
-                <Header title="Sign In"></Header>
+                <Header title="Sign in to Continue"></Header>
             </View>
             <View style={styles.content}>
                 <FormInput type="Email..."></FormInput>
@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     header: {
+        marginTop: 158,
+        marginLeft: 28,
         flex: 0.3,
     },
     content: {

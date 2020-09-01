@@ -2,34 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
-import * as Google from 'expo-google-app-auth';
-import template from '../styling';
-
-const { width, height } = Dimensions.get('window');
+import {templates} from '../styling';
 
 export default function RoundButton({ text, navigation }) {
-    async function signInWithGoogleAsync() {
-        try {
-
-            const result = await Google.logInAsync({
-                androidClientId: '758801542752-b1r13r3htq4n00unh6s3s04d1giodpgi.apps.googleusercontent.com',
-                iosClientId: '758801542752-uamtvfk9u959eojn83dhpm7hnl5nkrjd.apps.googleusercontent.com',
-                scopes: ['profile', 'email'],
-            });
-
-            if (result.type === 'success') {
-                console.log(result)
-                return result.accessToken;
-            } else {
-                return { cancelled: true };
-            }
-        } catch (e) {
-            console.log(e);
-            return { error: true };
-        }
-    }
     function signIn() {
-        signInWithGoogleAsync();
+        console.log('signing in');
     }
     return (
         <View>
@@ -50,7 +27,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: 56,
-        width: template.wp('80%') > 412 ? 363 : template.wp('90%'),
+        width: templates.wp('80%') > 412 ? 363 : templates.wp('90%'),
         borderRadius: 16,
         margin: 16,
     },
