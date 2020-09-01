@@ -57,7 +57,10 @@ const AuthenticationNavigator = () => {
     fingerPrintLogin();
 
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false,
+            }}>
             {/* <Stack.Screen name="Home" component={Home} /> */}
             <Stack.Screen name="Login" component={Login} />
             {/* <Stack.Screen name="LoadingScreen" component={LoadingScreen} />

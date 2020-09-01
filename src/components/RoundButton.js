@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-nati
 import { RectButton } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Google from 'expo-google-app-auth';
+import template from '../styling';
 
 const { width, height } = Dimensions.get('window');
 
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: 56,
-        width: 363,
+        width: template.wp('80%') > 412 ? 363 : template.wp('90%'),
         borderRadius: 16,
         margin: 16,
     },

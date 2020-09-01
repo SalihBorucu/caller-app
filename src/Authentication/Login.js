@@ -3,9 +3,9 @@ import { StyleSheet, Text, View, Image, ScrollView, Button } from 'react-native'
 import Header from './Header';
 import FormInput from '../components/FormInput';
 import RoundButton from '../components/RoundButton';
+import {templates} from '../styling';
 
 export default function Login({confirmLogin, navigation}) {
-    console.log(navigation)
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>
