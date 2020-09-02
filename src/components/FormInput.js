@@ -1,23 +1,27 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { templates } from '../styling';
+import { FontAwesome } from '@expo/vector-icons';
 
-export default function FormInput({ type }) {
+export default function FormInput({ placeholder, icon }) {
     return (
-        <View>
-            <TextInput placeholder={type} placeholderStyle={styles.placeholder} style={styles.input}></TextInput>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <TextInput placeholder={placeholder} placeholderStyle={styles.placeholder} style={[styles.input, templates.formText]}></TextInput>
+            <FontAwesome name={icon} size={24} color={templates.lightColor} style={styles.icon}/>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     input: {
-        margin: 10,
-        padding: 10,
-        // fontFamily: 'Poppins-Regular',
         color: 'black',
         height: 56,
-        width: 363,
-        borderRadius: 14,
-        backgroundColor: 'rgba(0, 0, 0, 0.03)',
+        width: templates.wp('80%') > 412 ? 363 : templates.wp('90%'),
+        borderBottomWidth: 1,
+        borderBottomColor: templates.lightColor,
+    },
+    icon: {
+        position: 'absolute',
+        right: 20,
     },
 });

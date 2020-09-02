@@ -7,9 +7,9 @@ const templates = {
 
     primaryColor: '#3337A5',
     secondaryColor: '#00AB6B',
-    warningColor: 'orange',
-    errorColor: 'red',
-    successColor: 'green',
+    warningColor: '#FEC031',
+    errorColor: '#FF0045',
+    successColor: '#00AB6B',
 
     darkColor: '#000000',
     lightColor: '#F1F1F1',
@@ -19,8 +19,8 @@ const templates = {
 
     textColorPrimary: '#000000',
     textColorSecondary: '#000000',
-    textColorLight: '#000000',
-    textColorDark: '#000000',
+    textColorLight: '#FFFFFF',
+    textColorDark: 'rgba(0, 0, 0, 0.5)',
 };
 
 const fonts = {
@@ -52,23 +52,47 @@ const styles = StyleSheet.create({
         lineHeight: 24,
     },
     h2: {
-        color: templates.textColorPrimary,
-        fontSize: 24,
-    },
-    h3: {
+        fontFamily: 'Metropolis-Medium',
         color: templates.textColorPrimary,
         fontSize: 20,
+        lineHeight: 20,
+    },
+    h3: {
+        fontFamily: 'Metropolis-SemiBold',
+        color: templates.textColorPrimary,
+        fontSize: 18,
+        lineHeight: 18,
     },
     p: {
         color: templates.textColorPrimary,
+        fontFamily: 'Metropolis-Medium',
         fontSize: 14,
+        lineHeight: 14,
+    },
+    formText: {
+        color: templates.textColorPrimary,
+        fontFamily: 'Metropolis-Medium',
+        fontSize: 16,
+        lineHeight: 16,
     },
     small: {
+        fontFamily: 'Metropolis-Regular',
         color: templates.textColorPrimary,
-        fontSize: 8,
+        fontSize: 12,
+    },
+    smallBold: {
+        fontFamily: 'Metropolis-Bold',
+        color: templates.textColorPrimary,
+        fontSize: 12,
+    },
+    smallMuted: {
+        fontFamily: 'Metropolis-Medium',
+        opacity: 0.5,
+        color: templates.textColorPrimary,
+        fontSize: 12,
     },
     warning: {
-        color: templates.textColorPrimary,
+        color: templates.warningColor,
         fontSize: 8,
     },
 });
