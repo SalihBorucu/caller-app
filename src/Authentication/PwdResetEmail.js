@@ -15,10 +15,10 @@ export default function PwdResetEmail({ confirmLogin, navigation }) {
                 <View style={styles.content}>
                     <View>
                         <Text style={[templates.p]}>Email</Text>
-                        <FormInput placeholder="example@hey.com" icon="envelope"></FormInput>
+                        <FormInput placeholder="example@hey.com" icon="mail"></FormInput>
                     </View>
-                </View>
                     <Text style={[templates.small, {marginTop: 20}]}>We will send a code to your email that you can use to set a new password.</Text>
+                </View>
                 <View style={styles.footer}>
                     <RoundButton text="Send Code" type="btn" confirmLogin={confirmLogin} action={() => navigation.navigate('PwdResetCode')}></RoundButton>
                     <View style={{ flexDirection: 'row', margin: 20 }}>

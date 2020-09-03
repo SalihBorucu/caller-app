@@ -18,8 +18,8 @@ export default function SignUp({ confirmLogin, navigation }) {
                         <FormInput placeholder="Joe Doe"></FormInput>
                     </View>
                     <View>
-                        <Text style={[templates.p, { marginTop: 20 }]}>Password</Text>
-                        <FormInput placeholder="example@hey.com" icon="envelope"></FormInput>
+                        <Text style={[templates.p, { marginTop: 20 }]}>Email</Text>
+                        <FormInput placeholder="example@hey.com" icon="mail"></FormInput>
                     </View>
                     <View>
                         <Text style={[templates.p, { marginTop: 20 }]}>Password</Text>

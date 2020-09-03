@@ -63,6 +63,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         lineHeight: 18,
     },
+    h4: {
+        fontFamily: 'Metropolis-Bold',
+        color: templates.textColorPrimary,
+        fontSize: 18,
+        lineHeight: 16,
+    },
     p: {
         color: templates.textColorPrimary,
         fontFamily: 'Metropolis-Medium',
@@ -94,6 +100,18 @@ const styles = StyleSheet.create({
     warning: {
         color: templates.warningColor,
         fontSize: 8,
+    },
+    navText: {
+        fontFamily: 'Metropolis-Regular',
+        color: templates.textColorDark,
+        fontSize: 12,
+        lineHeight: 17,
+    },
+    timeText: {
+        fontFamily: 'Metropolis-Regular',
+        color: templates.textColorDark,
+        fontSize: 10,
+        lineHeight: 10,
     },
 });
 

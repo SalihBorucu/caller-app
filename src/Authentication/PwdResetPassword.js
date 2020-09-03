@@ -21,10 +21,10 @@ export default function PwdResetPassword({ confirmLogin, navigation }) {
                         <Text style={[templates.p, { marginTop: 20 }]}>Confirm Password</Text>
                         <FormInput placeholder="Enter Password" icon="eye"></FormInput>
                     </View>
+                    <Text style={[templates.small, { marginTop: 20 }]}>The password must be at least 8 characters, contain an uppercase letter, number and special character.</Text>
                 </View>
-                <Text style={[templates.small, { marginTop: 20 }]}>The password must be at least 8 characters, contain an uppercase letter, number and special character.</Text>
                 <View style={styles.footer}>
-                    <RoundButton text="Set New Password" type="btn" confirmLogin={confirmLogin} action={() => navigation.navigate('Home')}></RoundButton>
+                    <RoundButton text="Set New Password" type="btn" confirmLogin={confirmLogin} action={() => navigation.navigate('Inbox')}></RoundButton>
                 </View>
             </View>
         </ScrollView>

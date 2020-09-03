@@ -29,7 +29,6 @@ export default function Login({ confirmLogin, navigation }) {
                             Reset Password
                         </Text>
                     </View>
-
                     <Text style={[templates.smallMuted, { marginTop: 60 }]}>Or Continue With</Text>
                     <View style={{ flexDirection: 'row' }}>
                         <RoundButton icon="google" text="Google" width="40%" type="btnOutline" navigation={navigation}></RoundButton>
@@ -54,15 +53,17 @@ const styles = StyleSheet.create({
         height: templates.hp('100%'),
     },
     header: {
-        marginTop: templates.hp('100%') > templates.wp('100%') ? '20%' : '5%',
+        flex: 2,
         alignItems: 'center',
+        justifyContent: 'center',
     },
     content: {
-        marginTop: templates.hp('100%') > templates.wp('100%') ? '15%' : '5%',
+        flex: 3,
         justifyContent: 'center',
         alignItems: 'center',
     },
     footer: {
+        flex: 3,
         justifyContent: 'center',
         alignItems: 'center',
     },
