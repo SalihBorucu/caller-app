@@ -11,7 +11,7 @@ const templates = {
     errorColor: '#FF0045',
     successColor: '#00AB6B',
 
-    darkColor: '#000000',
+    darkColor: 'rgba(0, 0, 0, 0.5)',
     lightColor: '#F1F1F1',
 
     backgroundColor: '#FFFFFF',
@@ -112,6 +112,12 @@ const styles = StyleSheet.create({
         color: templates.textColorDark,
         fontSize: 10,
         lineHeight: 10,
+    },
+    // card
+    divider: {
+        height: 50,
+        borderColor: templates.lightColor,
+        borderWidth: 1,
     },
 });
 

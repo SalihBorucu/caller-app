@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { templates } from '../styling';
 
 export default function MessageSummary({ contact }) {
-    console.log(contact);
     let imagePath = contact.image ? contact.image : require('../../assets/images/default_user.png');
     return (
         <View style={styles.container}>

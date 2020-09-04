@@ -24,7 +24,7 @@ export default function PwdResetPassword({ confirmLogin, navigation }) {
                     <Text style={[templates.small, { marginTop: 20 }]}>The password must be at least 8 characters, contain an uppercase letter, number and special character.</Text>
                 </View>
                 <View style={styles.footer}>
-                    <RoundButton text="Set New Password" type="btn" confirmLogin={confirmLogin} action={() => navigation.navigate('Inbox')}></RoundButton>
+                    <RoundButton text="Set New Password" type="btn" confirmLogin={confirmLogin} action={() => navigation.navigate('Home')}></RoundButton>
                 </View>
             </View>
         </ScrollView>
