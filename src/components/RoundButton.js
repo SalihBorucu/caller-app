@@ -24,7 +24,7 @@ export default function RoundButton({ text, type, width = '90%', icon, navigatio
     }
     return (
         <View>
-            <TouchableOpacity onPress={action} style={[styles[type], { width: templates.wp('80%') > 412 ? 363 : templates.wp(width) }]}>
+            <TouchableOpacity onPress={action} style={[styles[type], { width: templates.wp(width) }]} value={text}>
                 <FontAwesome name={icon} size={24} color={type === 'btn' ? templates.textColorLight : templates.primaryColor} style={styles.icon} />
                 <Text style={[styles.btnText, {color:btnTextColor}]}>{text}</Text>
             </TouchableOpacity>
@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: templates.backgroundColor,
         height: 44,
-        width: templates.wp('80%') > 412 ? 363 : '100%',
         borderRadius: 5,
         margin: 16,
         borderWidth: 1,
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
     },
     btnText: {
         padding: 10,
-        lineHeight: 14,
+        lineHeight: 18,
         fontFamily: 'Metropolis-Medium',
         fontSize: 18,
     },

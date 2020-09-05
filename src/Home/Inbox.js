@@ -4,10 +4,19 @@ import { templates } from '../styling';
 import MessageSummary from './MessageSummary';
 import { Entypo, Feather } from '@expo/vector-icons';
 import database from '../Database';
+import CircleButton from '../components/CircleButton';
 
 export default function Inbox() {
     return (
         <View style={[styles.container, { backgroundColor: templates.backgroundColor }]}>
+            <View style={styles.floatingBtn}>
+                <CircleButton
+                    // action={() => props.navigation.navigate('NewMessage')}
+                    icon="ios-create"
+                    backgroundColor="transparent"
+                    >
+                    </CircleButton>
+            </View>
             <View style={styles.header}>
                 {/* //invisible to center title */}
                 <View style={{ width: 65 }}></View>
@@ -47,5 +56,11 @@ const styles = StyleSheet.create({
     footer: {
         flex: 1,
         width: '100%',
+    },
+    floatingBtn: {
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
+        zIndex: 10,
     },
 });

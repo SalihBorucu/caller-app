@@ -20,7 +20,7 @@ export default function Analytics() {
                 </View>
                 <View style={styles.purchaseBox}>
                     <View>
-                        <Text style={[templates.h4, { color: templates.textColorLight }]}>Current Credit</Text>
+                        <Text style={[templates.h4, { color: templates.textColorLight }]}>International Credit</Text>
                         <Text style={[templates.p, { color: templates.lightColor, paddingTop: 5 }]}>${database.user.credits}</Text>
                     </View>
                     <RoundButton width={'30%'} type="btnOutline" text="Purchase"></RoundButton>

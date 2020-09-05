@@ -3,11 +3,11 @@ import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { templates } from '../styling';
 import { Feather } from '@expo/vector-icons';
 
-export default function FormInput({ placeholder, icon }) {
+export default function FormInput({ placeholder, icon, keyboard = true }) {
     return (
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-            <TextInput placeholder={placeholder} placeholderStyle={styles.placeholder} style={[styles.input, templates.formText]}></TextInput>
-            <Feather name={icon} size={24} color={templates.lightColor} style={styles.icon}/>
+            <TextInput showSoftInputOnFocus={keyboard} placeholder={placeholder} placeholderStyle={styles.placeholder} style={[styles.input, templates.formText]}></TextInput>
+            <Feather name={icon} size={24} color={templates.lightColor} style={styles.icon} />
         </View>
     );
 }

@@ -6,35 +6,37 @@ import { Feather } from '@expo/vector-icons';
 export default function CallsSummary({ contact }) {
     let imagePath = contact.image ? contact.image : require('../../assets/images/default_user.png');
     let iconColor = templates.successColor;
-    let typeName = 'Outgoing Call'
+    let typeName = 'Outgoing Call';
+    let iconType;
+    if(contact.callSummary.type === 'phone-outgoing'){
+        iconType = contact.callSummary.type;
+    }
 
-    if(contact.callSummary.type === 'phone-missed') { 
-        iconColor = templates.errorColor
-        typeName = 'Missed Call'
-    } else if (contact.callSummary.type === 'phone-incoming'){
-        iconColor = templates.warningColor
+    if (contact.callSummary.type === 'phone-missed') {
+        iconColor = templates.errorColor;
+        typeName = 'Missed Call';
+    } else if (contact.callSummary.type === 'phone-incoming') {
+        iconColor = templates.warningColor;
         typeName = 'Incoming Call';
     }
-        return (
-            <View style={styles.container}>
-                <View style={styles.iconContainer}>
-                    <Feather name={contact.callSummary.type} size={30} color={iconColor} />
+    
+    return (
+        <View style={styles.container}>
+            <View style={styles.iconContainer}>
+                <Feather name={iconType} size={20} />
+            </View>
+            <View style={styles.activityContainer}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Text style={[templates.h4, { marginBottom: 10 }]}>{contact.name}</Text>
+                    <Text style={templates.timeText}>1:24 PM</Text>
                 </View>
-                <View style={styles.imageContainer}>
-                    <Image style={styles.image} source={imagePath}></Image>
-                </View>
-                <View style={styles.activityContainer}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <Text style={[templates.h4, { marginBottom: 10 }]}>{contact.name}</Text>
-                        <Text style={templates.timeText}>1:24 PM</Text>
-                    </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-        <Text style={[templates.hp, { textAlign: 'center' }]}>{typeName}</Text>
-                        <Feather name="info" size={18} />
-                    </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Text style={[templates.hp, { textAlign: 'center' }]}>{typeName}</Text>
+                    {/* <Feather name="info" size={18} /> */}
                 </View>
             </View>
-        );
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
     },
     iconContainer: {
         padding: 15,
-        flex: 0.2,
+        flex: 0.1,
     },
     imageContainer: {
         flex: 0.2,
