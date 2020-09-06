@@ -19,7 +19,7 @@ export default function NewCall(props) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Ionicons name="" size={26} color={templates.primaryColor} />
+                {/* <Ionicons name="" size={26} color={templates.primaryColor} /> */}
                 <Text style={[templates.h2, { color: templates.primaryColor, textAlign: 'center', fontSize: 32, lineHeight: 28 }]}>{number}</Text>
                 <TouchableOpacity onPress={backspace} onLongPress={backspaceAll}>
                     <Ionicons name="ios-backspace" size={26} color={templates.primaryColor} />

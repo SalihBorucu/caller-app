@@ -110,8 +110,8 @@ const styles = StyleSheet.create({
     timeText: {
         fontFamily: 'Metropolis-Regular',
         color: templates.textColorDark,
-        fontSize: 10,
-        lineHeight: 10,
+        fontSize: 15,
+        lineHeight: 15,
     },
     // card
     divider: {

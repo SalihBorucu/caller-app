@@ -4,8 +4,6 @@ import { templates } from '../styling';
 import { Feather } from '@expo/vector-icons';
 
 export default function CallsSummary({ contact }) {
-    let imagePath = contact.image ? contact.image : require('../../assets/images/default_user.png');
-    let iconColor = templates.successColor;
     let typeName = 'Outgoing Call';
     let iconType;
     if(contact.callSummary.type === 'phone-outgoing'){
@@ -13,22 +11,20 @@ export default function CallsSummary({ contact }) {
     }
 
     if (contact.callSummary.type === 'phone-missed') {
-        iconColor = templates.errorColor;
         typeName = 'Missed Call';
     } else if (contact.callSummary.type === 'phone-incoming') {
-        iconColor = templates.warningColor;
         typeName = 'Incoming Call';
     }
     
     return (
         <View style={styles.container}>
             <View style={styles.iconContainer}>
-                <Feather name={iconType} size={20} />
+                <Feather name={iconType} size={16} />
             </View>
             <View style={styles.activityContainer}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text style={[templates.h4, { marginBottom: 10 }]}>{contact.name}</Text>
-                    <Text style={templates.timeText}>1:24 PM</Text>
+                    <Text style={[templates.h4, { marginBottom: 10, color: contact.callSummary.type === 'phone-missed' ? templates.errorColor : templates.textColorPrimary }]}>{contact.name}</Text>
+                    <Text style={[templates.timeText, {paddingTop: 10}]}>1:24 PM</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Text style={[templates.hp, { textAlign: 'center' }]}>{typeName}</Text>
@@ -48,17 +44,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     iconContainer: {
-        padding: 15,
-        flex: 0.1,
-    },
-    imageContainer: {
-        flex: 0.2,
-        justifyContent: 'center',
-        alignItems: 'center',
+        flex: 0.07,
+        height: '90%',
+        justifyContent: 'flex-start'
     },
     activityContainer: {
-        flex: 0.8,
-        padding: 20,
+        flex: 0.93,
         borderBottomWidth: 1,
         borderBottomColor: templates.lightColor,
     },

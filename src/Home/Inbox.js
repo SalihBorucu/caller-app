@@ -27,7 +27,7 @@ export default function Inbox() {
                 </View>
             </View>
             <View style={styles.content}>
-                <FlatList data={database.contacts} keyExtractor={(item) => item.id} renderItem={({ item }) => <MessageSummary contact={item}></MessageSummary>}></FlatList>
+                <FlatList data={database.contacts} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <MessageSummary contact={item}></MessageSummary>}></FlatList>
             </View>
         </View>
     );

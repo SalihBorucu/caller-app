@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { templates } from '../styling';
-import { Feather } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
 import CallsSummary from './CallsSummary';
 import CircleButton from '../components/CircleButton';
 
@@ -19,18 +19,17 @@ export default function RecentCalls(props) {
                     shadow={true}></CircleButton>
             </View>
             <View style={styles.header}>
-                <View></View>
-                {/* MAKE FLOATING BUTTON  */}
+                <View style={{ width: 65 }}></View>
                 <Text style={templates.h4} onPress={() => props.navigation.navigate('Login')}>
                     Recent Calls
                 </Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Feather name="search" size={24} style={{ paddingRight: 10 }} />
-                    <Feather name="users" size={24} style={{ paddingRight: 10 }}></Feather>
+                    <Ionicons name="ios-search" size={26} style={{ paddingRight: 10 }} />
+                    <Ionicons name="ios-contacts" size={26} style={{ paddingRight: 10 }}></Ionicons>
                 </View>
             </View>
             <View style={styles.content}>
-                <FlatList data={database.contacts} keyExtractor={(item) => item.id} renderItem={({ item }) => <CallsSummary contact={item}></CallsSummary>}></FlatList>
+                <FlatList data={database.contacts} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <CallsSummary contact={item}></CallsSummary>}></FlatList>
             </View>
             {/* <View style={styles.footer}></View> */}
         </View>

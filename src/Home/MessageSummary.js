@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     },
     messageContainer: {
         flex: 0.8,
-        padding: 20,
+        padding: 10,
         borderBottomWidth: 1,
         borderBottomColor: templates.lightColor,
     },
