@@ -1,21 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Login, SignUp, PwdResetCode, PwdResetEmail, PwdResetPassword } from './src/Authentication';
+import { CallInProgress, EndOfCall, NewCall, RecentCalls, CallInfo } from './src/Home/Call';
+import { Inbox, MessageConversation, NewMessage } from './src/Home/Message';
+import { Settings, Profile, Permissions, Voicemail, BlockedNumbers } from './src/Home/Settings';
+import { Analytics } from './src/Home/Analytics';
 import { createStackNavigator } from '@react-navigation/stack';
 import { fonts, templates } from './src/styling';
-import Inbox from './src/Home/Inbox';
-import RecentCalls from './src/Home/RecentCalls';
-import NewCall from './src/Home/NewCall';
-import Analytics from './src/Home/Analytics';
-import Settings from './src/Home/Settings';
 import LoadAssets from './src/components/LoadAssets';
+import Contacts from './src/components/Contacts';
 import LoadingScreen from './src/components/LoadingScreen';
 import PushNotification from './src/components/PushNotification.js';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import database from './src/Database';
-import CallInProgress from './src/Home/CallInProgress';
-import MessageConversation from './src/Home/MessageConversation';
-import NewMessage from './src/Home/NewMessage';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -38,7 +35,7 @@ const HomeStackScreen = () => {
                     }
                     return <Ionicons name={iconName} size={size} color={color} />;
                 },
-                tabBarButton: ['NewCall', 'MessageConversation', 'NewMessage'].includes(route.name)
+                tabBarButton: ['NewCall', 'MessageConversation', 'NewMessage', 'EndOfCall', 'Permissions', 'BlockedNumbers', 'Profile', 'Voicemail', 'Contacts', 'CallInfo'].includes(route.name)
                     ? () => {
                           return null;
                       }
@@ -51,12 +48,19 @@ const HomeStackScreen = () => {
                 keyboardHidesTabBar: true,
             }}>
             <Tab.Screen name="Recent Calls" component={RecentCalls} initialParams={{ contacts: database }} />
-            <Tab.Screen name="Inbox" component={Inbox} />
-            <Tab.Screen name="Analytics" component={Analytics} />
-            <Tab.Screen name="Settings" component={Settings} />
             <Tab.Screen name="NewCall" component={NewCall} />
+            <Tab.Screen name="EndOfCall" component={EndOfCall} />
+            <Tab.Screen name="CallInfo" component={CallInfo} />
+            <Tab.Screen name="Inbox" component={Inbox} />
             <Tab.Screen name="MessageConversation" component={MessageConversation} />
             <Tab.Screen name="NewMessage" component={NewMessage} />
+            <Tab.Screen name="Analytics" component={Analytics} />
+            <Tab.Screen name="Settings" component={Settings} />
+            <Tab.Screen name="Profile" component={Profile} />
+            <Tab.Screen name="Permissions" component={Permissions} />
+            <Tab.Screen name="Voicemail" component={Voicemail} />
+            <Tab.Screen name="BlockedNumbers" component={BlockedNumbers} />
+            <Tab.Screen name="Contacts" component={Contacts} />
         </Tab.Navigator>
     );
 };

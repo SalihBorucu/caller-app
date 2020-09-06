@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { templates } from '../styling';
-import CircleButton from '../components/CircleButton';
+import { templates } from '../../styling';
+import CircleButton from '../../components/CircleButton';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 

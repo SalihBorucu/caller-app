@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { templates } from '../styling';
-import database from '../Database';
-import RoundButton from '../components/RoundButton';
+import { templates } from '../../styling';
+import database from '../../Database';
+import RoundButton from '../../components/RoundButton';
 import UsageCard from './UsageCard';
 import { Ionicons } from '@expo/vector-icons';
 

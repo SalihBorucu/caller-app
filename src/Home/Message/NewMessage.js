@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, showStatus } from 'react';
 import { StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native';
-import { templates } from '../styling';
+import { templates } from '../../styling';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity, TextInput, ScrollView } from 'react-native-gesture-handler';
 import MessageBubble from './MessageBubble';
@@ -20,7 +20,7 @@ export default function NewMessage(props) {
                 <Ionicons name="md-arrow-back" size={26} onPress={() => props.navigation.goBack()} />
                 <TextInput style={{ fontSize: 24 }} placeholder="Enter a number" ref={inputRef} keyboardType="phone-pad" />
                 <View style={{ flexDirection: 'row' }}>
-                    <Ionicons name="ios-contacts" size={26} />
+                    <Ionicons onPress={() => props.navigation.navigate('Contacts')} name="ios-contacts" size={26} />
                 </View>
             </View>
             <View style={styles.content}>

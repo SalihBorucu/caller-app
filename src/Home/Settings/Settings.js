@@ -1,24 +1,24 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { templates } from '../styling';
+import { templates } from '../../styling';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import SettingsListItem from './SettingsListItem';
 
-export default function Settings() {
+export default function Settings({navigation}) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={templates.h1}>Settings</Text>
             </View>
             <View style={styles.content}>
-                <SettingsListItem text="Edit Profile" icon="ios-person"></SettingsListItem>
-                <SettingsListItem text="Auto Reply" icon="ios-text"></SettingsListItem>
-                <SettingsListItem text="Forwarding" icon="md-skip-forward"></SettingsListItem>
-                <SettingsListItem text="Blocked Numbers" icon="md-remove-circle-outline"></SettingsListItem>
-                <SettingsListItem text="Anonymous Calls" icon="ios-eye-off"></SettingsListItem>
-                <SettingsListItem text="Voicemail" icon="md-recording"></SettingsListItem>
-                <SettingsListItem text="Permissions" icon="ios-clipboard"></SettingsListItem>
+                <SettingsListItem action={() => navigation.navigate('Profile')} text="Edit Profile" icon="ios-person"></SettingsListItem>
+                <SettingsListItem action={() => navigation.navigate('')} text="Auto Reply" icon="ios-text"></SettingsListItem>
+                <SettingsListItem action={() => navigation.navigate('')} text="Forwarding" icon="md-skip-forward"></SettingsListItem>
+                <SettingsListItem action={() => navigation.navigate('BlockedNumbers')} text="Blocked Numbers" icon="md-remove-circle-outline"></SettingsListItem>
+                <SettingsListItem action={() => navigation.navigate('')} text="Anonymous Calls" icon="ios-eye-off"></SettingsListItem>
+                <SettingsListItem action={() => navigation.navigate('Voicemail')} text="Voicemail" icon="md-recording"></SettingsListItem>
+                <SettingsListItem action={() => navigation.navigate('Permissions')} text="Permissions" icon="ios-clipboard"></SettingsListItem>
             </View>
             <View style={styles.footer}>
                 <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>

@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { templates } from '../styling';
+import { templates } from '../../styling';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function MessageSummary({ contact, navigation }) {
-    let imagePath = contact.image ? contact.image : require('../../assets/images/default_user.png');
+    let imagePath = contact.image ? contact.image : require('../../../assets/images/default_user.png');
     let appIcon = contact.appUser ? 'ios-radio-button-on' : '';
     return (
         <View style={styles.container}>

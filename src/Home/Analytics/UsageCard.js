@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { templates } from '../styling';
+import { templates } from '../../styling';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function UsageCard({title, calls, messages}) {

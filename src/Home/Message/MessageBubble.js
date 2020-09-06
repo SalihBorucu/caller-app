@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { templates } from '../styling';
+import { templates } from '../../styling';
 
 export default function MessageBubble({ received, contact }) {
-    let imagePath = contact.image ? contact.image : require('../../assets/images/default_user.png');
+    let imagePath = contact.image ? contact.image : require('../../../assets/images/default_user.png');
 
     if (received) {
         return (

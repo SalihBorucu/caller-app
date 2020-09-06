@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { templates } from '../styling';
-import CircleButton from '../components/CircleButton';
-import Pulse from '../components/Pulse';
-import database from '../Database';
+import { templates } from '../../styling';
+import CircleButton from '../../components/CircleButton';
+import Pulse from '../../components/Pulse';
+import database from '../../Database';
 
 export default function CallInProgress(props) {
-    let imagePath = props.contact ? props.contact.image : require('../../assets/images/default_user.png');
+    let imagePath = props.contact ? props.contact.image : require('../../../assets/images/default_user.png');
     const [loudSpeaker, setLoudSpeaker] = useState(false);
     const [micOff, setMicOff] = useState(false);
     return (
@@ -34,7 +34,7 @@ export default function CallInProgress(props) {
                     />
                     <CircleButton
                         style={styles.shadow}
-                        action={() => props.navigation.goBack()}
+                        action={() => props.navigation.navigate('EndOfCall')}
                         icon="ios-call"
                         backgroundColor={templates.errorColor}
                         textColor={templates.textColorLight}

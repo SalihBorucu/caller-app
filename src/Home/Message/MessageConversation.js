@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native';
-import { templates } from '../styling';
+import { templates } from '../../styling';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity, TextInput, ScrollView } from 'react-native-gesture-handler';
 import MessageBubble from './MessageBubble';

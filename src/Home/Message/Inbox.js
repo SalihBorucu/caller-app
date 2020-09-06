@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import { templates } from '../styling';
+import { templates } from '../../styling';
 import MessageSummary from './MessageSummary';
 import { Entypo, Feather } from '@expo/vector-icons';
-import database from '../Database';
-import CircleButton from '../components/CircleButton';
+import database from '../../Database';
+import CircleButton from '../../components/CircleButton';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function Inbox({navigation}) {
