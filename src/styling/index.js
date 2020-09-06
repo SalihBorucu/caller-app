@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Metropolis-Bold',
         color: templates.textColorPrimary,
         fontSize: 18,
-        lineHeight: 16,
+        lineHeight: 18,
     },
     p: {
         color: templates.textColorPrimary,

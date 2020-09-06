@@ -4,7 +4,7 @@ import { templates } from '../styling';
 import database from '../Database';
 import RoundButton from '../components/RoundButton';
 import UsageCard from './UsageCard';
-import { Feather } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Analytics() {
     return (
@@ -39,7 +39,7 @@ export default function Analytics() {
                 <UsageCard title="All Time" messages="600" calls="330"></UsageCard>
             </View>
             <View style={styles.footer}>
-                    <Feather name="hash" color={templates.primaryColor} size={26}/>
+                    <Ionicons name="ios-pricetag" color={templates.primaryColor} size={26}/>
                     <Text style={templates.p}>Looking for extra numbers?</Text>
                     <RoundButton type="btn" width="25%" text="Purchase"></RoundButton>
             </View>

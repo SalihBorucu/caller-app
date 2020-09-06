@@ -5,17 +5,16 @@ import MessageSummary from './MessageSummary';
 import { Entypo, Feather } from '@expo/vector-icons';
 import database from '../Database';
 import CircleButton from '../components/CircleButton';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function Inbox() {
+export default function Inbox({navigation}) {
     return (
         <View style={[styles.container, { backgroundColor: templates.backgroundColor }]}>
             <View style={styles.floatingBtn}>
                 <CircleButton
                     // action={() => props.navigation.navigate('NewMessage')}
                     icon="ios-create"
-                    backgroundColor="transparent"
-                    >
-                    </CircleButton>
+                    backgroundColor="transparent"></CircleButton>
             </View>
             <View style={styles.header}>
                 {/* //invisible to center title */}
@@ -27,7 +26,14 @@ export default function Inbox() {
                 </View>
             </View>
             <View style={styles.content}>
-                <FlatList data={database.contacts} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <MessageSummary contact={item}></MessageSummary>}></FlatList>
+                <FlatList
+                    data={database.contacts}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity onPress={()=> navigation.navigate('MessageConversation', {contact: item})}>
+                            <MessageSummary contact={item}></MessageSummary>
+                        </TouchableOpacity>
+                    )}></FlatList>
             </View>
         </View>
     );

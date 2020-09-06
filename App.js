@@ -10,10 +10,11 @@ import Settings from './src/Home/Settings';
 import LoadAssets from './src/components/LoadAssets';
 import LoadingScreen from './src/components/LoadingScreen';
 import PushNotification from './src/components/PushNotification.js';
-import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import { Feather } from '@expo/vector-icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
 import database from './src/Database';
 import CallInProgress from './src/Home/CallInProgress';
+import MessageConversation from './src/Home/MessageConversation';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -26,27 +27,34 @@ const HomeStackScreen = () => {
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
                     if (route.name === 'Inbox') {
-                        iconName = 'mail';
+                        iconName = 'ios-chatboxes';
                     } else if (route.name === 'Recent Calls') {
-                        iconName = 'phone';
+                        iconName = 'ios-call';
                     } else if (route.name === 'Analytics') {
-                        iconName = 'activity';
+                        iconName = 'ios-stats';
                     } else if (route.name === 'Settings') {
-                        iconName = 'settings';
+                        iconName = 'ios-options';
                     }
-                    return <Feather name={iconName} size={size} color={color} />;
+                    return <Ionicons name={iconName} size={size} color={color} />;
                 },
-                tabBarButton: ['NewCall'].includes(route.name) ? () => {return null;} : undefined,
+                tabBarButton: ['NewCall', 'MessageConversation'].includes(route.name)
+                    ? () => {
+                          return null;
+                      }
+                    : undefined,
             })}
             tabBarOptions={{
+                showLabel: false,
                 activeTintColor: templates.primaryColor,
                 inactiveTintColor: templates.darkColor,
+                keyboardHidesTabBar: true,
             }}>
             <Tab.Screen name="Recent Calls" component={RecentCalls} initialParams={{ contacts: database }} />
             <Tab.Screen name="Inbox" component={Inbox} />
             <Tab.Screen name="Analytics" component={Analytics} />
             <Tab.Screen name="Settings" component={Settings} />
             <Tab.Screen name="NewCall" component={NewCall} />
+            <Tab.Screen name="MessageConversation" component={MessageConversation} />
         </Tab.Navigator>
     );
 };

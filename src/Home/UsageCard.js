@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { templates } from '../styling';
-import { Feather } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function UsageCard({title, calls, messages}) {
     return (
@@ -14,7 +14,7 @@ export default function UsageCard({title, calls, messages}) {
                         <Text style={[templates.p, { color: templates.successColor }]}>+60%</Text>
                     </View>
                     <View style={styles.cardHalfRow}>
-                        <Feather name="phone" size={24} />
+                        <Ionicons name="ios-call" size={24} />
                         <Text style={templates.p}>Calls</Text>
                     </View>
                 </View>
@@ -27,7 +27,7 @@ export default function UsageCard({title, calls, messages}) {
                         <Text style={[templates.p, { color: templates.successColor }]}>+60%</Text>
                     </View>
                     <View style={styles.cardHalfRow}>
-                        <Feather name="mail" size={24} />
+                        <Ionicons name="ios-mail" size={24} />
                         <Text style={templates.p}>  Messages</Text>
                     </View>
                 </View>

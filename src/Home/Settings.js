@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { templates } from '../styling';
-import { Feather } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import SettingsListItem from './SettingsListItem';
 
@@ -12,17 +12,17 @@ export default function Settings() {
                 <Text style={templates.h1}>Settings</Text>
             </View>
             <View style={styles.content}>
-                <SettingsListItem text="Edit Profile" icon="user"></SettingsListItem>
-                <SettingsListItem text="Auto Reply" icon="skip-forward"></SettingsListItem>
-                <SettingsListItem text="Forwarding" icon="phone-forwarded"></SettingsListItem>
-                <SettingsListItem text="Blocked Numbers" icon="shield"></SettingsListItem>
-                <SettingsListItem text="Anonymous Calls" icon="eye-off"></SettingsListItem>
-                <SettingsListItem text="Voicemail" icon="voicemail"></SettingsListItem>
-                <SettingsListItem text="Permissions" icon="clipboard"></SettingsListItem>
+                <SettingsListItem text="Edit Profile" icon="ios-person"></SettingsListItem>
+                <SettingsListItem text="Auto Reply" icon="ios-text"></SettingsListItem>
+                <SettingsListItem text="Forwarding" icon="md-skip-forward"></SettingsListItem>
+                <SettingsListItem text="Blocked Numbers" icon="md-remove-circle-outline"></SettingsListItem>
+                <SettingsListItem text="Anonymous Calls" icon="ios-eye-off"></SettingsListItem>
+                <SettingsListItem text="Voicemail" icon="md-recording"></SettingsListItem>
+                <SettingsListItem text="Permissions" icon="ios-clipboard"></SettingsListItem>
             </View>
             <View style={styles.footer}>
                 <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                    <Feather name="log-out" size={26} color={templates.errorColor} />
+                    <Ionicons name="ios-log-out" size={26} color={templates.errorColor} />
                     <Text style={templates.p}> Sign Out</Text>
                 </TouchableOpacity>
             </View>
