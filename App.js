@@ -15,6 +15,7 @@ import { Ionicons } from '@expo/vector-icons';
 import database from './src/Database';
 import CallInProgress from './src/Home/CallInProgress';
 import MessageConversation from './src/Home/MessageConversation';
+import NewMessage from './src/Home/NewMessage';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -37,7 +38,7 @@ const HomeStackScreen = () => {
                     }
                     return <Ionicons name={iconName} size={size} color={color} />;
                 },
-                tabBarButton: ['NewCall', 'MessageConversation'].includes(route.name)
+                tabBarButton: ['NewCall', 'MessageConversation', 'NewMessage'].includes(route.name)
                     ? () => {
                           return null;
                       }
@@ -55,6 +56,7 @@ const HomeStackScreen = () => {
             <Tab.Screen name="Settings" component={Settings} />
             <Tab.Screen name="NewCall" component={NewCall} />
             <Tab.Screen name="MessageConversation" component={MessageConversation} />
+            <Tab.Screen name="NewMessage" component={NewMessage} />
         </Tab.Navigator>
     );
 };

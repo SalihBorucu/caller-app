@@ -12,7 +12,7 @@ export default function Inbox({navigation}) {
         <View style={[styles.container, { backgroundColor: templates.backgroundColor }]}>
             <View style={styles.floatingBtn}>
                 <CircleButton
-                    // action={() => props.navigation.navigate('NewMessage')}
+                    action={() => navigation.navigate('NewMessage')}
                     icon="ios-create"
                     backgroundColor="transparent"></CircleButton>
             </View>
