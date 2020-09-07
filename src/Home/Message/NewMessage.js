@@ -7,6 +7,8 @@ import MessageBubble from './MessageBubble';
 
 export default function NewMessage(props) {
     const navigation = props.navigation;
+    let contactNumber = props.route.params.item ? props.route.params.item.phoneNumbers[0].number : null
+
     const inputRef = useRef();
     React.useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
@@ -20,7 +22,7 @@ export default function NewMessage(props) {
                 <Ionicons name="md-arrow-back" size={26} onPress={() => props.navigation.goBack()} />
                 <TextInput style={{ fontSize: 24 }} placeholder="Enter a number" ref={inputRef} keyboardType="phone-pad" />
                 <View style={{ flexDirection: 'row' }}>
-                    <Ionicons onPress={() => props.navigation.navigate('Contacts')} name="ios-contacts" size={26} />
+                    <Ionicons onPress={() => props.navigation.navigate('Contacts', {showDetails: false})} name="ios-contacts" size={26} />
                 </View>
             </View>
             <View style={styles.content}>

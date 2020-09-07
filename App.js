@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { fonts, templates } from './src/styling';
 import LoadAssets from './src/components/LoadAssets';
 import Contacts from './src/components/Contacts';
+import Contact from './src/components/Contact';
 import LoadingScreen from './src/components/LoadingScreen';
 import PushNotification from './src/components/PushNotification.js';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -35,7 +36,7 @@ const HomeStackScreen = () => {
                     }
                     return <Ionicons name={iconName} size={size} color={color} />;
                 },
-                tabBarButton: ['NewCall', 'MessageConversation', 'NewMessage', 'EndOfCall', 'Permissions', 'BlockedNumbers', 'Profile', 'Voicemail', 'Contacts', 'CallInfo'].includes(route.name)
+                tabBarButton: ['NewCall', 'MessageConversation', 'NewMessage', 'EndOfCall', 'Permissions', 'BlockedNumbers', 'Profile', 'Voicemail', 'Contacts', 'Contact', 'CallInfo'].includes(route.name)
                     ? () => {
                           return null;
                       }
@@ -61,6 +62,7 @@ const HomeStackScreen = () => {
             <Tab.Screen name="Voicemail" component={Voicemail} />
             <Tab.Screen name="BlockedNumbers" component={BlockedNumbers} />
             <Tab.Screen name="Contacts" component={Contacts} />
+            <Tab.Screen name="Contact" component={Contact} />
         </Tab.Navigator>
     );
 };

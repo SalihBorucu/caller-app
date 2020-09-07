@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { templates } from '../../styling';
-import { Feather, Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import CallsSummary from './CallsSummary';
 import CircleButton from '../../components/CircleButton';
 
@@ -20,12 +20,12 @@ export default function RecentCalls(props) {
             </View>
             <View style={styles.header}>
                 <View style={{ width: 65 }}></View>
-                <Text style={templates.h4} onPress={() => props.navigation.navigate('Login')}>
+                <Text style={templates.h4}>
                     Recent Calls
                 </Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Ionicons name="ios-search" size={26} style={{ paddingRight: 10 }} />
-                    <Ionicons onPress={()=> props.navigation.navigate('Contacts')} name="ios-contacts" size={26} style={{ paddingRight: 10 }} />
+                    <Ionicons onPress={()=> props.navigation.navigate('Contacts', {showDetails: true})} name="ios-contacts" size={26} style={{ paddingRight: 10 }} />
                 </View>
             </View>
             <View style={styles.content}>
