@@ -19,19 +19,18 @@ export default function RecentCalls(props) {
                     shadow={true}></CircleButton>
             </View>
             <View style={styles.header}>
-                <View style={{ width: 65 }}></View>
+                <View style={{ width: 35 }}></View>
                 <Text style={templates.h4}>
                     Recent Calls
                 </Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Ionicons name="ios-search" size={26} style={{ paddingRight: 10 }} />
+                    {/* <Ionicons name="ios-search" size={26} style={{ paddingRight: 10 }}/> */}
                     <Ionicons onPress={()=> props.navigation.navigate('Contacts', {showDetails: true})} name="ios-contacts" size={26} style={{ paddingRight: 10 }} />
                 </View>
             </View>
             <View style={styles.content}>
                 <FlatList data={database.contacts} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <CallsSummary contact={item} action={()=> props.navigation.navigate('CallInfo', {item})}></CallsSummary>}></FlatList>
             </View>
-            {/* <View style={styles.footer}></View> */}
         </View>
     );
 }

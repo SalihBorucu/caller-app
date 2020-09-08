@@ -9,6 +9,8 @@ export default function CallInProgress(props) {
     let imagePath = props.contact ? props.contact.image : require('../../../assets/images/default_user.png');
     const [loudSpeaker, setLoudSpeaker] = useState(false);
     const [micOff, setMicOff] = useState(false);
+
+    const callDetails = { from: '+1298 329891', to: '+109 123900123', duration: '01.32' };
     return (
         <View style={styles.container}>
             <View style={styles.header}></View>
@@ -34,7 +36,7 @@ export default function CallInProgress(props) {
                     />
                     <CircleButton
                         style={styles.shadow}
-                        action={() => props.navigation.navigate('EndOfCall')}
+                        action={() => props.navigation.navigate('CallInfo', {item: callDetails})}
                         icon="ios-call"
                         backgroundColor={templates.errorColor}
                         textColor={templates.textColorLight}

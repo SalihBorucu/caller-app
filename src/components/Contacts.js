@@ -4,29 +4,37 @@ import * as Contacts from 'expo-contacts';
 // import Contact from './Contact';
 import ContactSummary from './ContactSummary';
 import { templates } from '../styling';
-import { Ionicons, Entypo } from '@expo/vector-icons';
 import database from '../Database';
+import { TextInput } from 'react-native-gesture-handler';
+import SearchBar from './SearchBar';
 
-
-export default function App(props, {navigation}) {
-    const [contacts, setContacts] = useState(null);
+export default function App(props, { navigation }) {
+    const [contactsOriginal, setContactsOriginal] = useState(database.phoneContacts);
+    const [contacts, setContacts] = useState(contactsOriginal);
     let showDetails = props.route.params.showDetails;
 
-    useEffect(() => {
-        (async () => {
-            const { status } = await Contacts.requestPermissionsAsync();
-            if (status === 'granted') {
-                const { data } = await Contacts.getContactsAsync({
-                    fields: [Contacts.Fields.PhoneNumbers],
-                });
+    function search(value) {
+        if (value === '') {
+            setContacts(contactsOriginal);
+            return
+        }
+        setContacts(contactsOriginal.filter((y) => y.name.toLowerCase().includes(value)));
+    }
 
-                if (data.length > 0) {
-                    setContacts(data.filter((contact) => contact.phoneNumbers));
-                }
-            }
-        })();
-    }, []);
-    // setContact('hello')
+    // useEffect(() => {
+    //     (async () => {
+    //         const { status } = await Contacts.requestPermissionsAsync();
+    //         if (status === 'granted') {
+    //             const { data } = await Contacts.getContactsAsync({
+    //                 fields: [Contacts.Fields.PhoneNumbers],
+    //             });
+
+    //             if (data.length > 0) {
+    //                 setOriginalContacts(data.filter((contact) => contact.phoneNumbers));
+    //             }
+    //         }
+    //     })();
+    // }, []);
     // if (!contacts) {
     //     return (
     //         <View style={styles.container}>
@@ -49,33 +57,33 @@ export default function App(props, {navigation}) {
     //         </View>
     //     );
     // } else {
-        return (
-            <View style={styles.container}>
-                <View style={styles.header}>
-                    <View style={{ width: 65 }}></View>
-                    <Text style={templates.h4} onPress={() => props.navigation.navigate('Login')}>
+    return (
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <View style={styles.headerRow}>
+                    <Text style={templates.h1} onPress={() => props.navigation.navigate('Login')}>
                         Contacts
                     </Text>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <Ionicons name="ios-search" size={26} style={{ paddingRight: 10 }} />
-                        <Entypo name="dots-three-vertical" size={24} style={{ paddingRight: 10 }}></Entypo>
-                    </View>
                 </View>
-                <View style={styles.content}>
-                    <FlatList
-                        data={database.phoneContacts}
-                        keyExtractor={(item) => item.id.toString()}
-                        renderItem={({ item }) => (
-                            <ContactSummary
-                                contact={item}
-                                contacts={database.phoneContacts}
-                                action={showDetails ? () => props.navigation.navigate('Contact', { item }) : () => props.navigation.navigate('NewMessage', { item })}></ContactSummary>
-                        )}></FlatList>
+                <View style={{ alignItems: 'center', marginVertical: 10 }}>
+                    <SearchBar action={search}></SearchBar>
                 </View>
-                <View style={styles.footer}></View>
             </View>
-        );
-    }
+            <View style={styles.content}>
+                <FlatList
+                    data={contacts}
+                    // extraData={contacts}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={({ item }) => (
+                        <ContactSummary
+                            contact={item}
+                            contacts={contacts}
+                            action={showDetails ? () => props.navigation.navigate('Contact', { item }) : () => props.navigation.navigate('NewMessage', { item })}></ContactSummary>
+                    )}></FlatList>
+            </View>
+        </View>
+    );
+}
 // }
 
 const styles = StyleSheet.create({
@@ -85,15 +93,18 @@ const styles = StyleSheet.create({
         backgroundColor: templates.backgroundColor,
     },
     header: {
-        paddingTop: 28,
-        paddingBottom: 24,
-        flexDirection: 'row',
-        flex: 1,
+        minHeight: 60,
+        paddingTop: 48,
+        // paddingBottom: 24,
+        // flex: 1.5,
         backgroundColor: templates.backgroundColor,
-        alignItems: 'flex-end',
-        justifyContent: 'space-between',
         borderBottomWidth: 1,
         borderBottomColor: templates.lightColor,
+    },
+    headerRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     content: {
         flex: 9,
