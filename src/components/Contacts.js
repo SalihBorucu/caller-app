@@ -5,7 +5,6 @@ import * as Contacts from 'expo-contacts';
 import ContactSummary from './ContactSummary';
 import { templates } from '../styling';
 import database from '../Database';
-import { TextInput } from 'react-native-gesture-handler';
 import SearchBar from './SearchBar';
 
 export default function App(props, { navigation }) {

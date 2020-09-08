@@ -24,15 +24,9 @@ export default function Inbox({ navigation }) {
                 <CircleButton action={() => navigation.navigate('NewMessage')} icon="ios-create" backgroundColor="transparent"></CircleButton>
             </View>
             <View style={styles.header}>
-                {/* //invisible to center title */}
-                {/* <View style={{ width: 65 }}></View> */}
                 <View style={styles.headerRow}>
                     <Text style={templates.h4}>Inbox</Text>
                 </View>
-                {/* <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Feather name="search" size={24} style={{ paddingRight: 10 }} />
-                    <Entypo name="dots-three-vertical" size={24} style={{ paddingRight: 10 }}></Entypo>
-                </View> */}
                 <View style={{ alignItems: 'center', marginVertical: 10 }}>
                     <SearchBar action={search}></SearchBar>
                 </View>

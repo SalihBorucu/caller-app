@@ -1,13 +1,28 @@
-import React, { useRef, useEffect, showStatus } from 'react';
+import React, { useRef, useState } from 'react';
 import { StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native';
 import { templates } from '../../styling';
 import { Ionicons } from '@expo/vector-icons';
-import { TouchableOpacity, TextInput, ScrollView } from 'react-native-gesture-handler';
+import { TouchableOpacity, TextInput, ScrollView, FlatList } from 'react-native-gesture-handler';
 import MessageBubble from './MessageBubble';
+import database from '../../Database';
 
 export default function NewMessage(props) {
+    const [contactsOriginal, setContactsOriginal] = useState(database.phoneContacts);
+    const [similarContacts, setSimilarContacts] = useState('');
     const navigation = props.navigation;
-    let contactNumber = props.route.params.item ? props.route.params.item.phoneNumbers[0].number : null
+    let contactNumber = props.route.params.item ? props.route.params.item.phoneNumbers[0].number : null;
+
+    function findMatching(value) {
+        if(value.match(/[a-z]/i)){
+            setSimilarContacts(contactsOriginal.filter((x) => x.name.toLowerCase().includes(value)));
+            return
+        }
+        if (value === '') {
+            setSimilarContacts('');
+            return;
+        }
+        setSimilarContacts(contactsOriginal.filter((x) => x.phoneNumbers[0].number.replace(/\D/g, '').includes(value.replace(/\D/g, ''))));
+    }
 
     const inputRef = useRef();
     React.useEffect(() => {
@@ -20,9 +35,21 @@ export default function NewMessage(props) {
         <KeyboardAvoidingView style={styles.container} behavior={Platform.OS == 'ios' ? 'padding' : ''} keyboardVerticalOffset={50}>
             <View style={styles.header}>
                 <Ionicons name="md-arrow-back" size={26} onPress={() => props.navigation.goBack()} />
-                <TextInput style={{ fontSize: 24 }} placeholder="Enter a number" ref={inputRef} keyboardType="phone-pad" />
+                <TextInput style={{ fontSize: 24 }} placeholder="Enter a number" ref={inputRef} keyboardType="phone-pad" onChangeText={findMatching} />
                 <View style={{ flexDirection: 'row' }}>
-                    <Ionicons onPress={() => props.navigation.navigate('Contacts', {showDetails: false})} name="ios-contacts" size={26} />
+                    <Ionicons onPress={() => props.navigation.navigate('Contacts', { showDetails: false })} name="ios-contacts" size={26} />
+                </View>
+            </View>
+            <View style={{ justifyContent: 'center', alignItems: 'center', opacity: similarContacts.length ? 1 : 0 }}>
+                <View style={styles.searchDropdown}>
+                    <FlatList
+                        data={similarContacts}
+                        keyExtractor={(item) => item.id.toString()}
+                        renderItem={({ item }) => (
+                            <TouchableOpacity style={styles.searchDropdownItem} onPress={()=> navigation.navigate('MessageConversation', {item})}>
+                                <Text style={{ fontSize: 18 }}>{item.name}</Text>
+                            </TouchableOpacity>
+                        )}></FlatList>
                 </View>
             </View>
             <View style={styles.content}>
@@ -58,6 +85,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         flexDirection: 'row',
         flex: 1,
+        minHeight: 70,
         alignItems: 'center',
         justifyContent: 'space-between',
         borderBottomWidth: 1,
@@ -66,6 +94,7 @@ const styles = StyleSheet.create({
     content: {
         flex: 8,
         alignItems: 'center',
+        justifyContent: 'center',
     },
     footer: {
         flex: 1,
@@ -98,5 +127,22 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '95%',
         margin: 20,
+    },
+    searchDropdown: {
+        maxHeight: 200,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '60%',
+        borderWidth: 1,
+        borderTopWidth: 0,
+        borderRadius: 5,
+        borderColor: templates.lightColor,
+        padding: 5
+    },
+    searchDropdownItem: {
+        width: '100%',
+        borderBottomWidth: 1,
+        borderBottomColor: templates.lightColor,
+        borderRadius: 5,
     },
 });
