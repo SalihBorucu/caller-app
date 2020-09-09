@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, KeyboardAvoidingView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { templates } from '../../styling';
 import database from '../../Database';
+import { TextInput, ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function Profile({ navigation }) {
     const user = database.user;
@@ -15,53 +16,59 @@ export default function Profile({ navigation }) {
                 <Text style={templates.h3}>Edit Profile</Text>
                 <Text style={[templates.p, { width: 35, color: templates.primaryColor }]}>Save</Text>
             </View>
-            <View style={styles.content}>
-                <View>
-                    <Image style={styles.image} source={imagePath}></Image>
-                    <Ionicons style={{ position: 'absolute', bottom: 60, right: 5 }} color={templates.primaryColor} name="ios-camera" size={26} />
-                </View>
-                <View style={[styles.box]}>
-                    <View>
-                        <Text style={[templates.p, { padding: 5 }]}>Fullname</Text>
-                        <Text style={[templates.h3, { padding: 5 }]}>{user.name}</Text>
+            <ScrollView>
+                <KeyboardAvoidingView>
+                    <View style={styles.content}>
+                        <View>
+                            <Image style={styles.image} source={imagePath}></Image>
+                            <Ionicons style={{ position: 'absolute', bottom: 30, right: 5 }} color={templates.primaryColor} name="ios-camera" size={26} />
+                        </View>
+                        <View style={[styles.box]}>
+                            <View>
+                                <Text style={[templates.p, { padding: 5 }]}>Fullname</Text>
+                                <TextInput style={[templates.h3, { padding: 5, width: '100%' }]}>{user.name}</TextInput>
+                            </View>
+                            <View></View>
+                            <View style={{ flexDirection: 'row' }}>
+                                {/* <Ionicons name={contactName === 'Unknown' ? 'ios-add' : ''} size={26} /> */}
+                                <Ionicons style={{ marginHorizontal: 10 }} color={templates.primaryColor} name="ios-contact" size={24} />
+                            </View>
+                        </View>
+                        <View style={[styles.box]}>
+                            <View>
+                                <Text style={[templates.p, { padding: 5 }]}>Email</Text>
+                                <TextInput style={[templates.h3, { padding: 5 }]}>{user.email}</TextInput>
+                            </View>
+                            <View></View>
+                            <View>
+                                <Ionicons style={{ marginRight: 10 }} color={templates.primaryColor} name="ios-mail" size={24} />
+                            </View>
+                        </View>
+                        <View style={[styles.box]}>
+                            <View>
+                                <Text style={[templates.p, { padding: 5 }]}>Password</Text>
+                                <Text style={[templates.h3, { padding: 5, width: '100%' }]} onPress={() => navigation.navigate('PwdResetPassword')}>
+                                    *********
+                                </Text>
+                            </View>
+                            <View></View>
+                            <View>
+                                <Ionicons style={{ marginRight: 10 }} color={templates.primaryColor} name="ios-lock" size={24} />
+                            </View>
+                        </View>
+                        <View style={[styles.box]}>
+                            <View>
+                                <Text style={[templates.p, { padding: 5 }]}>Owned Numbers</Text>
+                                <Text style={[templates.p, { padding: 5, width: 250 }]}>+44 8545 4564, +1 48 54254 8454, +1 48 54254 8454, +848 38382 327</Text>
+                            </View>
+                            <View></View>
+                            <View>
+                                <Ionicons style={{ marginRight: 10 }} color={templates.primaryColor} name="ios-call" size={24} />
+                            </View>
+                        </View>
                     </View>
-                    <View></View>
-                    <View style={{ flexDirection: 'row' }}>
-                        {/* <Ionicons name={contactName === 'Unknown' ? 'ios-add' : ''} size={26} /> */}
-                        <Ionicons style={{ marginHorizontal: 10 }} color={templates.primaryColor} name="ios-contact" size={24} />
-                    </View>
-                </View>
-                <View style={[styles.box]}>
-                    <View>
-                        <Text style={[templates.p, { padding: 5 }]}>Email</Text>
-                        <Text style={[templates.h3, { padding: 5 }]}>{user.email}</Text>
-                    </View>
-                    <View></View>
-                    <View>
-                        <Ionicons style={{ marginRight: 10 }} color={templates.primaryColor} name="ios-mail" size={24} />
-                    </View>
-                </View>
-                <View style={[styles.box]}>
-                    <View>
-                        <Text style={[templates.p, { padding: 5 }]}>Password</Text>
-                        <Text style={[templates.h3, { padding: 5 }]}>*********</Text>
-                    </View>
-                    <View></View>
-                    <View>
-                        <Ionicons style={{ marginRight: 10 }} color={templates.primaryColor} name="ios-lock" size={24} />
-                    </View>
-                </View>
-                <View style={[styles.box]}>
-                    <View>
-                        <Text style={[templates.p, { padding: 5 }]}>Owned Numbers</Text>
-                        <Text style={[templates.p, { padding: 5, width: 250 }]}>+44 8545 4564, +1 48 54254 8454, +1 48 54254 8454, +848 38382 327</Text>
-                    </View>
-                    <View></View>
-                    <View>
-                        <Ionicons style={{ marginRight: 10 }} color={templates.primaryColor} name="ios-call" size={24} />
-                    </View>
-                </View>
-            </View>
+                </KeyboardAvoidingView>
+            </ScrollView>
             <View style={styles.footer}></View>
             <Text></Text>
         </View>
@@ -78,7 +85,8 @@ const styles = StyleSheet.create({
         paddingTop: 32,
         paddingHorizontal: 20,
         flexDirection: 'row',
-        flex: 1,
+        // flex: 1,
+        minHeight: 100,
         alignItems: 'center',
         justifyContent: 'space-between',
         borderBottomWidth: 1,
@@ -97,11 +105,12 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: templates.lightColor,
         borderRadius: 5,
+        marginTop: 20,
         flexDirection: 'row',
         alignItems: 'center',
     },
     image: {
-        marginVertical: 50,
+        marginVertical: 25,
         width: 120,
         height: 120,
         borderColor: templates.primaryColor,
