@@ -58,7 +58,7 @@ export default class Pulse extends Component {
             pulses: [],
             pulseStyle: this.props.pulseStyle,
             speed: this.props.speed,
-            started: false,
+            started: this.props.started,
             style: this.props.style,
         };
     }
@@ -67,8 +67,6 @@ export default class Pulse extends Component {
 
     componentDidMount() {
         const { numPulses, duration, speed } = this.state;
-
-        this.setState({ started: true });
 
         let a = 0;
         while (a < numPulses) {
@@ -82,6 +80,11 @@ export default class Pulse extends Component {
         this.timer = setInterval(() => {
             this.updatePulse();
         }, speed);
+    }
+    componentDidUpdate(prevProps) {
+        if (prevProps.started !== this.props.started) {
+            this.setState({ started: this.props.started });
+        }
     }
 
     componentWillUnmount() {

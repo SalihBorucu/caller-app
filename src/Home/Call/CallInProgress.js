@@ -16,7 +16,7 @@ export default function CallInProgress(props) {
             <View style={styles.header}></View>
             <View style={styles.content}>
                 <View>
-                    <Pulse color="#d4f4e5" diameter={300} speed={30}></Pulse>
+                    <Pulse color="#d4f4e5" diameter={300} speed={30} started={true}></Pulse>
                     <Image style={styles.image} source={imagePath}></Image>
                 </View>
 

@@ -13,10 +13,10 @@ export default function Settings({navigation}) {
             </View>
             <View style={styles.content}>
                 <SettingsListItem action={() => navigation.navigate('Profile')} text="Edit Profile" icon="ios-person"></SettingsListItem>
-                <SettingsListItem action={() => navigation.navigate('')} text="Auto Reply" icon="ios-text"></SettingsListItem>
+                {/* <SettingsListItem action={() => navigation.navigate('')} text="Auto Reply" icon="ios-text"></SettingsListItem> */}
                 <SettingsListItem action={() => navigation.navigate('')} text="Forwarding" icon="md-skip-forward"></SettingsListItem>
                 <SettingsListItem action={() => navigation.navigate('BlockedNumbers')} text="Blocked Numbers" icon="md-remove-circle-outline"></SettingsListItem>
-                <SettingsListItem action={() => navigation.navigate('')} text="Anonymous Calls" icon="ios-eye-off"></SettingsListItem>
+                {/* <SettingsListItem action={() => navigation.navigate('')} text="Anonymous Calls" icon="ios-eye-off"></SettingsListItem> */}
                 <SettingsListItem action={() => navigation.navigate('Voicemail')} text="Voicemail" icon="md-recording"></SettingsListItem>
                 <SettingsListItem action={() => navigation.navigate('Permissions')} text="Permissions" icon="ios-clipboard"></SettingsListItem>
             </View>
