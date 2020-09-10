@@ -31,6 +31,7 @@ export default function NewMessage(props) {
         });
         return unsubscribe;
     }, [navigation]);
+    
     return (
         <KeyboardAvoidingView style={styles.container} behavior={Platform.OS == 'ios' ? 'padding' : ''} keyboardVerticalOffset={50}>
             <View style={styles.header}>

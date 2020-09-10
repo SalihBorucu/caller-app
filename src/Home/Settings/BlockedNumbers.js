@@ -1,19 +1,8 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { templates } from '../../styling';
-
-export default function BlockedNumbers({navigation}) {
-    return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <Ionicons name="md-arrow-back" size={26} onPress={() => navigation.goBack()} style={{ paddingRight: 35 }} />
-                <Text style={templates.h3}>Edit Profile</Text>
-                <View style={{ width: 35 }}></View>
-            </View>
-        </View>
-    );
-}
+import { FlatList, TextInput } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
     container: {
@@ -39,13 +28,11 @@ const styles = StyleSheet.create({
     },
     box: {
         justifyContent: 'space-between',
-        width: '80%',
-        // margin: 10,
-        minHeight: 60,
+        padding: 5,
         borderWidth: 1,
         borderColor: templates.lightColor,
         borderRadius: 5,
-        marginTop: 20,
+        marginTop: 5,
         flexDirection: 'row',
         alignItems: 'center',
     },
@@ -59,3 +46,89 @@ const styles = StyleSheet.create({
     },
 });
 
+const blockedNumbersRaw = [
+    '+44 923849 2',
+    '+76 9234 8728',
+    '+28 3847872 2',
+    '+93 583984598',
+    '+44 923849 2',
+    '+76 9234 8728',
+    '+28 3847872 2',
+    '+93 583984598',
+    '+44 923849 2',
+    '+76 9234 8728',
+    '+28 3847872 2',
+    '+31 583984598',
+];
+
+function NewNumber({ action, active, onChange }) {
+    function getNewNumber(x) {
+        onChange(x);
+    }
+
+    if (active) {
+        return (
+            <View style={{ width: '90%' }}>
+                <View style={[styles.box]}>
+                    <View style={{ width: '80%' }}>
+                        <TextInput style={{ padding: 10 }} placeholder="New number here.." autoFocus={true} onChangeText={(text) => getNewNumber(text)} keyboardType="phone-pad"></TextInput>
+                    </View>
+                    <View>
+                        <Ionicons style={{ marginHorizontal: 10 }} name="ios-add-circle-outline" size={24} onPress={action} />
+                    </View>
+                </View>
+            </View>
+        );
+    } else {
+        return null;
+    }
+}
+
+export default function BlockedNumbers({ navigation }) {
+    const [blockedNumbers, setBlockedNumbers] = useState(blockedNumbersRaw);
+    const [newNumber, setNewNumber] = useState(blockedNumbersRaw);
+    const [addingNewNumber, setAddingNewNumber] = useState(false);
+    function removeNumber(index) {
+        setBlockedNumbers(blockedNumbers.filter((number, i) => index !== i));
+    }
+    function toggleNewNumberBox() {
+        setAddingNewNumber(!addingNewNumber);
+    }
+    function getNewNumber(x) {
+        setNewNumber(x);
+    }
+
+    function confirmNewNumber() {
+        setBlockedNumbers(blockedNumbers.concat(newNumber));
+        setAddingNewNumber(false);
+    }
+
+    return (
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <Ionicons name="md-arrow-back" size={26} onPress={() => navigation.goBack()} style={{ paddingRight: 35 }} />
+                <Text style={templates.h3}>Blocked Numbers</Text>
+                <Ionicons name={addingNewNumber ? 'ios-remove-circle-outline' : 'ios-add-circle-outline'} size={26} color={templates.primaryColor} onPress={toggleNewNumberBox} />
+            </View>
+            <View style={styles.content}>
+                <NewNumber active={addingNewNumber} action={confirmNewNumber} onChange={getNewNumber}></NewNumber>
+                <FlatList
+                    style={{ width: '90%' }}
+                    data={blockedNumbers}
+                    extraData={blockedNumbers}
+                    keyExtractor={(item, index) => index}
+                    renderItem={({ item, index }) => (
+                        <View style={[styles.box]}>
+                            <View>
+                                <Text style={[templates.p, { padding: 5 }]}>{item}</Text>
+                            </View>
+                            <View></View>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Ionicons style={{ marginHorizontal: 10 }} name="ios-remove-circle-outline" size={24} onPress={() => removeNumber(index)} />
+                            </View>
+                        </View>
+                    )}></FlatList>
+            </View>
+        </View>
+    );
+}
