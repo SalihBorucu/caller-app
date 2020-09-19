@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView, Image } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, Image, Modal } from 'react-native';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import { templates } from '../../styling';
-import { ScrollView, TextInput, FlatList } from 'react-native-gesture-handler';
+import { ScrollView, TextInput, FlatList, TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
 import RecordButton from '../../components/RecordButton';
 import { Picker } from '@react-native-community/picker';
+import VoiceMailDetails from './VoiceMailDetails';
+import { set } from 'react-native-reanimated';
 
 const numbers = [
     {
@@ -17,8 +19,6 @@ const numbers = [
         voiceMailId: 2,
         number: '+187 154 35 52',
     },
-    
-    
 ];
 const voiceMails = [
     { id: 1, name: 'Out of office' },
@@ -33,16 +33,33 @@ let myNumbers = numbers.map((myValue, myIndex) => {
 
 export default function Voicemail({ navigation }) {
     const [selectedNumber, setSelectedNumber] = useState(numbers[0]);
-    function setVoiceMailForNumber(voiceMailId){
-        if(voiceMailId === selectedNumber.voiceMailId) return;
+    const [modalVisible, setModalVisible] = useState(true);
+    const [selectedVM, setSelectedVM] = useState(false);
+
+    function setVoiceMailForNumber(voiceMailId) {
+        if (voiceMailId === selectedNumber.voiceMailId) return;
         let newSelectedNumber = {
             id: selectedNumber.id,
             voiceMailId: voiceMailId,
             number: selectedNumber.number,
         };
         setSelectedNumber(newSelectedNumber);
-
     }
+
+    function saveAction() {
+        //handle save
+        setModalVisible(!modalVisible);
+    }
+    function deleteAction() {
+        //handle delete
+        setModalVisible(!modalVisible);
+    }
+
+    function newVMDetails() {
+        setSelectedVM(false);
+        setModalVisible(true);
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -50,31 +67,44 @@ export default function Voicemail({ navigation }) {
                 <Text style={templates.h3}>Voicemail</Text>
                 <View style={{ width: 35 }}></View>
             </View>
+            <VoiceMailDetails saveAction={saveAction} deleteAction={deleteAction} selectedVM={selectedVM} modalVisible={modalVisible} />
             <ScrollView>
                 <KeyboardAvoidingView>
                     <View style={styles.content}>
-                        <RecordButton></RecordButton>
+                        <RecordButton action={newVMDetails}></RecordButton>
                         <Picker
                             itemStyle={{ backgroundColor: 'grey', color: 'blue', fontFamily: 'Ebrima', fontSize: 17 }}
                             selectedValue={selectedNumber.id}
                             style={{ height: 20, width: 180 }}
-                            onValueChange={(itemValue) => { 
-                                setSelectedNumber(numbers.find(number => number.id === itemValue)); 
-                                }}>
+                            onValueChange={(itemValue) => {
+                                setSelectedNumber(numbers.find((number) => number.id === itemValue));
+                            }}>
                             {myNumbers}
                         </Picker>
                         <FlatList
-                        style={ {width: '90%'}}
+                            style={{ width: '90%' }}
                             data={voiceMails}
                             keyExtractor={(item) => item.id.toString()}
                             renderItem={({ item }) => (
                                 <View style={[styles.box]}>
                                     <View>
-                                        <Text style={[templates.p, { padding: 5 }]}>{item.name}</Text>
+                                        <TouchableOpacity
+                                            onPress={() => {
+                                                setSelectedVM(item);
+                                                setModalVisible(true);
+                                            }}>
+                                            <Text style={[templates.p, { padding: 5 }]}>{item.name}</Text>
+                                        </TouchableOpacity>
                                     </View>
                                     <View></View>
                                     <View style={{ flexDirection: 'row' }}>
-                                        <Ionicons style={{ marginHorizontal: 10 }} color={templates.primaryColor} name={selectedNumber.voiceMailId === item.id ? "ios-radio-button-on" : "ios-radio-button-off"} size={24} onPress={()=>setVoiceMailForNumber(item.id)}/>
+                                        <Ionicons
+                                            style={{ marginHorizontal: 10 }}
+                                            color={templates.primaryColor}
+                                            name={selectedNumber.voiceMailId === item.id ? 'ios-radio-button-on' : 'ios-radio-button-off'}
+                                            size={24}
+                                            onPress={() => setVoiceMailForNumber(item.id)}
+                                        />
                                     </View>
                                 </View>
                             )}></FlatList>

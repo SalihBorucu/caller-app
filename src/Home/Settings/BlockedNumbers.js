@@ -1,8 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { templates } from '../../styling';
-import { FlatList, TextInput } from 'react-native-gesture-handler';
+import { FlatList } from 'react-native-gesture-handler';
+import NewBlockedNumber from './NewBlockedNumber'
 
 const styles = StyleSheet.create({
     container: {
@@ -14,7 +15,6 @@ const styles = StyleSheet.create({
         paddingTop: 32,
         paddingHorizontal: 20,
         flexDirection: 'row',
-        // flex: 1,
         minHeight: 100,
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -61,28 +61,6 @@ const blockedNumbersRaw = [
     '+31 583984598',
 ];
 
-function NewNumber({ action, active, onChange }) {
-    function getNewNumber(x) {
-        onChange(x);
-    }
-
-    if (active) {
-        return (
-            <View style={{ width: '90%' }}>
-                <View style={[styles.box]}>
-                    <View style={{ width: '80%' }}>
-                        <TextInput style={{ padding: 10 }} placeholder="New number here.." autoFocus={true} onChangeText={(text) => getNewNumber(text)} keyboardType="phone-pad"></TextInput>
-                    </View>
-                    <View>
-                        <Ionicons style={{ marginHorizontal: 10 }} name="ios-add-circle-outline" size={24} onPress={action} />
-                    </View>
-                </View>
-            </View>
-        );
-    } else {
-        return null;
-    }
-}
 
 export default function BlockedNumbers({ navigation }) {
     const [blockedNumbers, setBlockedNumbers] = useState(blockedNumbersRaw);
@@ -94,12 +72,13 @@ export default function BlockedNumbers({ navigation }) {
     function toggleNewNumberBox() {
         setAddingNewNumber(!addingNewNumber);
     }
+    //TODO Look into refactoring this
     function getNewNumber(x) {
         setNewNumber(x);
     }
 
     function confirmNewNumber() {
-        setBlockedNumbers(blockedNumbers.concat(newNumber));
+        setBlockedNumbers([newNumber].concat(blockedNumbers));
         setAddingNewNumber(false);
     }
 
@@ -111,7 +90,7 @@ export default function BlockedNumbers({ navigation }) {
                 <Ionicons name={addingNewNumber ? 'ios-remove-circle-outline' : 'ios-add-circle-outline'} size={26} color={templates.primaryColor} onPress={toggleNewNumberBox} />
             </View>
             <View style={styles.content}>
-                <NewNumber active={addingNewNumber} action={confirmNewNumber} onChange={getNewNumber}></NewNumber>
+                <NewBlockedNumber active={addingNewNumber} action={confirmNewNumber} onChange={getNewNumber}></NewBlockedNumber>
                 <FlatList
                     style={{ width: '90%' }}
                     data={blockedNumbers}

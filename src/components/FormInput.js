@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     input: {
         color: 'black',
         height: 56,
-        width: templates.wp('80%') > 412 ? 363 : templates.wp('90%'),
+        width: templates.wp('80%') > 415 ? 363 : '90%', // check where this is used changed it recently
         borderBottomWidth: 1,
         borderBottomColor: templates.lightColor,
     },

@@ -10,9 +10,15 @@ const emptyAction = () => {
 
 export default function RecordButton({ text, icon, action = emptyAction, backgroundColor = templates.backgroundColor, border = true, textColor = templates.primaryColor, shadow = false }) {
     const [isRecording, setIsRecording] = useState(false);
+    function recordingAction() {
+        setIsRecording(!isRecording);
+        if (isRecording) {
+            action();
+        }
+    }
 
     return (
-        <TouchableOpacity style={[styles.image, { justifyContent: 'center', alignItems: 'center' }]} onPress={() => setIsRecording(!isRecording)}>
+        <TouchableOpacity style={[styles.image, { justifyContent: 'center', alignItems: 'center' }]} onPress={recordingAction}>
             <Pulse color={templates.primaryColor} diameter={180} speed={30} started={isRecording}></Pulse>
             <FontAwesome name={isRecording ? 'stop' : 'microphone'} size={58} color={templates.backgroundColor} />
         </TouchableOpacity>

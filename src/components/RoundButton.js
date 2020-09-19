@@ -7,7 +7,7 @@ const emptyAction = () => {
     console.log('havent set an action for this.');
 }
 
-export default function RoundButton({ text, type, width = '90%', icon, navigation, action= emptyAction}) {
+export default function RoundButton({ text, type, width = '90%', icon, navigation, action=emptyAction}) {
     let btnTextColor;
     switch (type) {
         case 'btnOutline':
