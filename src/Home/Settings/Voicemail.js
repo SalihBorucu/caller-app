@@ -33,7 +33,7 @@ let myNumbers = numbers.map((myValue, myIndex) => {
 
 export default function Voicemail({ navigation }) {
     const [selectedNumber, setSelectedNumber] = useState(numbers[0]);
-    const [modalVisible, setModalVisible] = useState(true);
+    const [modalVisible, setModalVisible] = useState(false);
     const [selectedVM, setSelectedVM] = useState(false);
 
     function setVoiceMailForNumber(voiceMailId) {

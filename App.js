@@ -2,7 +2,7 @@ import React from 'react';
 import { Login, SignUp, PwdResetCode, PwdResetEmail, PwdResetPassword } from './src/Authentication';
 import { CallInProgress, EndOfCall, NewCall, RecentCalls, CallInfo } from './src/Home/Call';
 import { Inbox, MessageConversation, NewMessage } from './src/Home/Message';
-import { Settings, Profile, Permissions, Voicemail, BlockedNumbers } from './src/Home/Settings';
+import { Settings, Profile, Permissions, Voicemail, BlockedNumbers, Forwarding } from './src/Home/Settings';
 import { Analytics } from './src/Home/Analytics';
 import { createStackNavigator } from '@react-navigation/stack';
 import { fonts, templates } from './src/styling';
@@ -36,10 +36,23 @@ const HomeStackScreen = () => {
                     }
                     return <Ionicons name={iconName} size={size} color={color} />;
                 },
-                tabBarButton: ['NewCall', 'MessageConversation', 'NewMessage', 'EndOfCall', 'Permissions', 'BlockedNumbers', 'Profile', 'Voicemail', 'Contacts', 'Contact', 'CallInfo'].includes(route.name)
+                tabBarButton: [
+                    'NewCall',
+                    'MessageConversation',
+                    'NewMessage',
+                    'EndOfCall',
+                    'Permissions',
+                    'BlockedNumbers',
+                    'Profile',
+                    'Voicemail',
+                    'Contacts',
+                    'Contact',
+                    'CallInfo',
+                    'Forwarding',
+                ].includes(route.name)
                     ? () => {
-                          return null;
-                      }
+                        return null;
+                    }
                     : undefined,
             })}
             tabBarOptions={{
@@ -60,6 +73,7 @@ const HomeStackScreen = () => {
             <Tab.Screen name="Profile" component={Profile} />
             <Tab.Screen name="Permissions" component={Permissions} />
             <Tab.Screen name="Voicemail" component={Voicemail} />
+            <Tab.Screen name="Forwarding" component={Forwarding} />
             <Tab.Screen name="BlockedNumbers" component={BlockedNumbers} />
             <Tab.Screen name="Contacts" component={Contacts} />
             <Tab.Screen name="Contact" component={Contact} />

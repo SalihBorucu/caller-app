@@ -10,12 +10,12 @@ import SearchBar from './SearchBar';
 export default function App(props, { navigation }) {
     const [contactsOriginal, setContactsOriginal] = useState(database.phoneContacts);
     const [contacts, setContacts] = useState(contactsOriginal);
-    let showDetails = props.route.params.showDetails;
+    let showDetails = props.route.params.showDetails || false;
 
     function search(value) {
         if (value === '') {
             setContacts(contactsOriginal);
-            return
+            return;
         }
         setContacts(contactsOriginal.filter((y) => y.name.toLowerCase().includes(value)));
     }
