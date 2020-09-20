@@ -123,6 +123,32 @@ export default {
         email: 'michael.smith@example.com',
         credits: 32.0,
         international_credits: 12.0,
+        phoneNumberProfiles: [
+            {
+                number: '+44 8723 4827',
+                voicemails: [
+                    { name: 'Call me later', path: 'xx' },
+                    { name: 'Call Jim instead', path: 'xx' },
+                    { name: 'On holiday', path: 'xx' },
+                ],
+                forwardSettings: {
+                    message: { number: null, active: false },
+                    call: { number: ' +54 283 7874', active: true },
+                },
+            },
+            {
+                number: '+149 8543 822',
+                voicemails: [
+                    { name: 'Out of office', path: 'xx' },
+                    { name: 'Not now', path: 'xx' },
+                    { name: 'On holiday', path: 'xx' },
+                ],
+                forwardSettings: {
+                    message: { number: ' +54 223 7874', active: true },
+                    call: { number: ' +54 283 444', active: false },
+                },
+            },
+        ],
     },
 
     phoneContacts: [
