@@ -3,7 +3,7 @@ import { Login, SignUp, PwdResetCode, PwdResetEmail, PwdResetPassword } from './
 import { CallInProgress, EndOfCall, NewCall, RecentCalls, CallInfo } from './src/Home/Call';
 import { Inbox, MessageConversation, NewMessage } from './src/Home/Message';
 import { Settings, Profile, Permissions, Voicemail, BlockedNumbers, Forwarding } from './src/Home/Settings';
-import { Analytics } from './src/Home/Analytics';
+import { Analytics, Payment, PurchaseNewNumber } from './src/Home/Analytics';
 import { createStackNavigator } from '@react-navigation/stack';
 import { fonts, templates } from './src/styling';
 import LoadAssets from './src/components/LoadAssets';
@@ -49,6 +49,8 @@ const HomeStackScreen = () => {
                     'Contact',
                     'CallInfo',
                     'Forwarding',
+                    'Payment',
+                    'PurchaseNewNumber'
                 ].includes(route.name)
                     ? () => {
                         return null;
@@ -61,14 +63,20 @@ const HomeStackScreen = () => {
                 inactiveTintColor: templates.darkColor,
                 keyboardHidesTabBar: true,
             }}>
+
             <Tab.Screen name="Recent Calls" component={RecentCalls} initialParams={{ contacts: database }} />
             <Tab.Screen name="NewCall" component={NewCall} />
             <Tab.Screen name="EndOfCall" component={EndOfCall} />
             <Tab.Screen name="CallInfo" component={CallInfo} />
+
             <Tab.Screen name="Inbox" component={Inbox} />
             <Tab.Screen name="MessageConversation" component={MessageConversation} />
             <Tab.Screen name="NewMessage" component={NewMessage} />
+
             <Tab.Screen name="Analytics" component={Analytics} />
+            <Tab.Screen name="Payment" component={Payment} />
+            <Tab.Screen name="PurchaseNewNumber" component={PurchaseNewNumber} />
+
             <Tab.Screen name="Settings" component={Settings} />
             <Tab.Screen name="Profile" component={Profile} />
             <Tab.Screen name="Permissions" component={Permissions} />
