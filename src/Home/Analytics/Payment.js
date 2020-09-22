@@ -4,17 +4,20 @@ import { Ionicons } from '@expo/vector-icons';
 import { templates } from '../../styling';
 import { TextInput, ScrollView } from 'react-native-gesture-handler';
 import CardDetails from './CardDetails';
+import { CreditCardInput, LiteCreditCardInput } from 'react-native-credit-card-input';
 
-export default function Payment() {
+export default function Payment(props) {
+    const amounts = props.route.params.amounts;
+    const total = props.route.params.total
     return (
         <ScrollView>
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <Ionicons name="md-arrow-back" size={26} onPress={() => navigation.goBack()} style={{ paddingRight: 35 }} />
+                    <Ionicons name="md-arrow-back" size={26} onPress={() => props.navigation.goBack()} style={{ paddingRight: 35 }} />
                     <Text style={templates.h3}>Checkout</Text>
                     <View style={{ width: 35 }}></View>
                 </View>
-                <KeyboardAvoidingView style={{ ...styles.content }}>
+                <View style={{ ...styles.content }}>
                     <View style={{ flexDirection: 'row' }}>
                         <View style={{ ...styles.miniCard }}>
                             <Image style={{ width: 100, height: 100, marginTop: 15 }} source={require('../../../assets/images/apple-pay.png')}></Image>
@@ -32,19 +35,19 @@ export default function Payment() {
                     <View style={{ width: '90%' }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                             <Text>Credits</Text>
-                            <Text>$5</Text>
+                            <Text>${amounts.credit}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                             <Text>International Credits</Text>
-                            <Text>$5</Text>
+                            <Text>${amounts.internationalCredit}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                             <Text>Recording Credits</Text>
-                            <Text>$5</Text>
+                            <Text>${amounts.recordingCredit}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
                             <Text style={{ ...templates.h3 }}>Total</Text>
-                            <Text style={{ ...templates.h3 }}>$15.00</Text>
+                            <Text style={{ ...templates.h3 }}>${total}.00</Text>
                         </View>
                     </View>
                     <View style={{ width: '100%', marginTop: 20, justifyContent: 'space-evenly' }}>
@@ -63,8 +66,11 @@ export default function Payment() {
                             </View>
                         </View>
                     </View>
-                    <CardDetails></CardDetails>
-                </KeyboardAvoidingView>
+                    <View style={{ width: '80%', margin: 20, borderWidth: 1, borderRadius: 5, borderColor: templates.lightColor }}>
+                        <LiteCreditCardInput />
+                    </View>
+                    {/* <CardDetails></CardDetails> */}
+                </View>
                 <View style={{ ...styles.footer }}>
                     <TouchableOpacity style={{ ...styles.purchaseButton }}>
                         <Text style={{ color: templates.textColorLight }}>Complete Purchase</Text>
@@ -77,7 +83,7 @@ export default function Payment() {
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
+        flex: 1,
         height: templates.hp('100%'),
         backgroundColor: templates.backgroundColor,
     },
@@ -85,7 +91,7 @@ const styles = StyleSheet.create({
         paddingTop: 32,
         paddingHorizontal: 20,
         flexDirection: 'row',
-        // flex: 1,
+        // flex: 0.2,
         minHeight: 100,
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -98,7 +104,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     footer: {
-        flex: 0.8,
+        // flex: 0.8,
         justifyContent: 'center',
         alignItems: 'center',
     },

@@ -11,7 +11,7 @@ export default function Analytics({ navigation }) {
     const [modalVisible, setModalVisible] = useState(false);
     return (
         <View style={{ opacity: modalVisible ? 0.5 : 1, ...styles.container }}>
-            <CreditAmount modalVisible={modalVisible} action={() => {navigation.navigate('Payment'), setModalVisible(false)}}></CreditAmount>
+            <CreditAmount modalVisible={modalVisible} action={(amounts, total) => {setModalVisible(false); navigation.navigate('Payment', {amounts, total}); console.log(amounts, total);}} navigation={navigation}></CreditAmount>
             <View style={styles.header}>
                 <Text style={[templates.h1, { color: templates.textColorLight }]}>My Credit Summary</Text>
                 <View style={styles.purchaseBox}>

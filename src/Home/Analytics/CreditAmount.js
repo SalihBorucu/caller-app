@@ -7,13 +7,14 @@ import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
 import RoundButton from '../../components/RoundButton';
 import AmountPicker from './AmountPicker';
 
-export default function CreditAmount({ modalVisible, action, selectedVM }) {
+export default function CreditAmount({ modalVisible, action, selectedVM, navigation }) {
     const [name, setName] = useState('New Recording');
     const [total, setTotal] = useState(0);
     const [amounts, setAmounts] = useState({
         credit: 0,
         internationalCredit: 0,
         recordingCredit: 0,
+        total
     });
 
     useEffect(() => {
@@ -23,8 +24,9 @@ export default function CreditAmount({ modalVisible, action, selectedVM }) {
     function adjustTotal(amount) {
         let dummyAmounts = amounts;
         dummyAmounts[Object.keys(amount)[0]] = amount[Object.keys(amount)[0]];
-        setAmounts(dummyAmounts)
+        setAmounts(dummyAmounts);
         setTotal(Object.keys(amounts).reduce((a, b) => a + amounts[b], 0));
+        
     }
 
     return (
@@ -63,7 +65,11 @@ export default function CreditAmount({ modalVisible, action, selectedVM }) {
                         </View>
                     </View>
                     <View style={styles.footer}>
-                        <RoundButton type="btn" width="25%" text="Confirm" action={action}></RoundButton>
+                        <RoundButton
+                            type="btn"
+                            width="25%"
+                            text="Confirm"
+                            action={()=>action(amounts, total)}></RoundButton>
                     </View>
                 </View>
             </View>
