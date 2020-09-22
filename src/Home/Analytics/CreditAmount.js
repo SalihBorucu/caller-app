@@ -59,7 +59,7 @@ export default function CreditAmount({ modalVisible, action, selectedVM }) {
                         <View style={{ flexDirection: 'row', alignItems: 'center', margin: 10, justifyContent: 'space-between', borderTopWidth: 1 }}>
                             <Text>Total: </Text>
                             <View style={{ width: 75 }}></View>
-                            <Text>{total}$</Text>
+                            <Text>{total}.00$</Text>
                         </View>
                     </View>
                     <View style={styles.footer}>

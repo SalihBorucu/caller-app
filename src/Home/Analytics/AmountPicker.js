@@ -23,7 +23,7 @@ export default function AmountPicker({ name, action, injAmount }) {
             <TouchableOpacity onPress={changeAmount}>
                 <Ionicons name="ios-add" size={18} />
             </TouchableOpacity>
-            <Text style={{ paddingHorizontal: 5 }}>{amount}$</Text>
+            <Text style={{ paddingHorizontal: 5 }}>{amount}.0$</Text>
             <TouchableOpacity onPress={() => changeAmount(false)} disabled={!amount}>
                 <Ionicons name="ios-remove" size={18} />
             </TouchableOpacity>
